@@ -1,5 +1,6 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 
 import { transactions } from '@/constants/transaction';
 import { Ionicons } from '@expo/vector-icons';
@@ -8,20 +9,30 @@ import { Text, View } from './Themed';
 
 
   export default function EditScreenInfo({ path }: { path: string }) {
+    const navigation = useNavigation();
+
+    const handleCardPress = (transaction: any) => {
+      console.log('Card Pressed', transaction);
+      
+    };
+
     return (
       <ScrollView contentContainerStyle={styles.container}>
-        {transactions.map((transaction) => (
-          <View key={transaction.id} style={styles.cardContainer}>
-            <View style={styles.cardContent}>
-              <Text style={styles.brandText}>{transaction.brand}</Text>
-              <Text style={styles.amountText}>${transaction.amount}</Text>
-            </View>
-            <Ionicons name="chevron-forward" style={styles.arrowIcon} />
-          </View>
-        ))}
+      {transactions.map((transaction) => (
+        <TouchableOpacity
+        key={transaction.id}
+        style={styles.cardContainer}
+        onPress={() => handleCardPress(transaction)}
+        >
+        <View style={styles.cardContent}>
+          <Text style={styles.brandText}>{transaction.brand}</Text>
+          <Text style={styles.amountText}>${transaction.amount}</Text>
+        </View>
+        <Ionicons name="chevron-forward" style={styles.arrowIcon} />
+        </TouchableOpacity>
+      ))}
       </ScrollView>
     );
-  // Remove the extra closing curly brace
 }
 
 const styles = StyleSheet.create({
