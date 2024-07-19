@@ -4,16 +4,16 @@ import { ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 
 import { transactions } from '@/constants/transaction';
 import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import { Text, View } from './Themed';
 
 
 
-  export default function EditScreenInfo({ path }: { path: string }) {
+  export default function EditScreenInfo() {
     const navigation = useNavigation();
 
     const handleCardPress = (transaction: any) => {
-      console.log('Card Pressed', transaction);
-      
+      router.push({ pathname: 'home/detail', params: { amount: transaction.amount, brand: transaction.brand, date: transaction.date, address: transaction.address } });
     };
 
     return (

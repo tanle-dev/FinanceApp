@@ -5,9 +5,9 @@ import { View } from '@/components/Themed';
 
 export default function TabOneScreen() {
   return (
-    <View style={styles.container}>
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
-    </View>
+      <View style={styles.container}>
+        <EditScreenInfo/>
+      </View>
   );
 }
 
